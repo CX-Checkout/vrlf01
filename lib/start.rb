@@ -5,7 +5,7 @@ require_relative '../lib/runner/credentials_config_file'
 require_relative '../lib/solutions/sum'
 require_relative '../lib/solutions/hello'
 require_relative '../lib/solutions/fizz_buzz'
-# require_relative '../lib/solutions/app'
+require_relative '../lib/solutions/app'
 
 
 #
@@ -55,5 +55,5 @@ start_client(ARGV,
                  'sum' => Sum.new.method(:sum),
                  'hello' => Hello.new.method(:hello),
                  'fizz_buzz' => FizzBuzz.new.method(:fizz_buzz),
-                 # 'checkout' => App.new.method(:checkout),
+                 'checkout' => App.new.method(:checkout),
              })

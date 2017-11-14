@@ -12,11 +12,13 @@ class App
         '3A' => 130,
         '2E' => { "price": 80, "free": "B" },
         '2B' => 45,
+        '2F' => { "price": 20, "free": "F" },
         '1A' => 50,
         '1B' => 30,
         '1C' => 20,
         '1D' => 15,
         '1E' => 40,
+        '1F' => 10,
     }
 
     price_table.each { |pattern, rule|

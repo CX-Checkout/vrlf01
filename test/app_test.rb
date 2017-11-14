@@ -65,4 +65,19 @@ class ClientTest < Minitest::Test
     assert_equal 280, app.checkout("ABCDEABCDE")
   end
 
+  def test_checkout_FF
+    assert_equal 20, app.checkout("FF")
+  end
+
+  def test_checkout_FFF
+    assert_equal 20, app.checkout("FFF")
+  end
+
+  def test_checkout_FFFF
+    assert_equal 30, app.checkout("FFFF")
+  end
+
+  def test_checkout_FFFFF
+    assert_equal 40, app.checkout("FFFFF")
+  end
 end

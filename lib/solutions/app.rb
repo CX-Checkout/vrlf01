@@ -8,6 +8,7 @@ class App
     return initial_price if x == ""
 
     price_table = {
+        'multibuy1_' => {"price": 45, "occurence": 3, "options": "STXYZ"},
         '5A'  => 200,
         '3A'  => 130,
         '2E'  => { "price": 80, "free": "B" },
@@ -15,7 +16,7 @@ class App
         '2F'  => { "price": 20, "free": "F" },
         '10H' => 80,
         '5H'  => 45,
-        '2K'  => 150,
+        '2K'  => 120,
         '3N'  => { "price": 120, "free": "M" },
         '5P'  => 200,
         '3R'  => { "price": 150, "free": "Q" },
@@ -33,7 +34,7 @@ class App
         '1H'  => 10,
         '1I'  => 35,
         '1J'  => 60,
-        '1K'  => 80,
+        '1K'  => 70,
         '1L'  => 90,
         '1M'  => 15,
         '1N'  => 40,
@@ -41,24 +42,45 @@ class App
         '1P'  => 50,
         '1Q'  => 30,
         '1R'  => 50,
-        '1S'  => 30,
+        '1S'  => 20,
         '1T'  => 20,
         '1U'  => 40,
         '1V'  => 50,
         '1W'  => 20,
-        '1X'  => 90,
-        '1Y'  => 10,
-        '1Z'  => 50,
+        '1X'  => 17,
+        '1Y'  => 20,
+        '1Z'  => 21,
     }
 
     price_table.each { |pattern, rule|
+      multibuy = false
+
       sku = pattern[-1]
-      pattern_count = pattern[0...-1].to_i
+      if sku == "_"
+        sku = rule[:options]
+        pattern_count = rule[:occurence]
+      else
+        pattern_count = pattern[0...-1].to_i
+      end
 
       if x.count(sku) >= pattern_count
-        pattern_count.times {
-          x.sub!(/#{sku}/, "")
-        }
+        if not multibuy
+          pattern_count.times {
+            x.sub!(/#{sku}/, "")
+          }
+        else
+          occurence = rule[:occurence]
+          while occurence > 0
+            rule[:options].each { |option|
+              if x.count(option) > 0
+                x.count(option).times {
+                  x.sub!(/#{option}/, "")
+                  occurence -= 1
+                }
+              end
+            }
+          end
+        end
         case rule.class.to_s
           when "Fixnum"
             return checkout2(x, initial_price + rule)

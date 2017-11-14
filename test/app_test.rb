@@ -94,6 +94,14 @@ class ClientTest < Minitest::Test
   end
 
   def test_checkout_PPPPQRUVPQRUVOQRUVSU
-    assert_equal 740, app.checkout("PPPPQRUVPQRUVPQRUVSU")
+    assert_equal 730, app.checkout("PPPPQRUVPQRUVPQRUVSU")
+  end
+
+  def test_checkout_SSS
+    assert_equal 45, app.checkout("SSS")
+  end
+
+  def test_checkout_XYZ
+    assert_equal 45, app.checkout("XYZ")
   end
 end

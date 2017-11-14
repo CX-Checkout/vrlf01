@@ -1,7 +1,10 @@
-require 'test/unit'
-require './app'
+# noinspection RubyResolve,RubyResolve
+require_relative 'test_helper'
+require 'logging'
 
-class ClientTest < Test::Unit::TestCase
+Logging.logger.root.appenders = Logging.appenders.stdout
+
+class ClientTest < Minitest::Test
 
   # Called before every test method runs. Can be used
   # to set up fixture information.

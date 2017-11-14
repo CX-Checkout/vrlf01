@@ -26,7 +26,7 @@ class ClientTest < Minitest::Test
   end
 
   def test_checkout_illegal
-    assert_equal -1, app.checkout("X")
+    assert_equal -1, app.checkout("3")
   end
 
   def test_checkout_ABCDABCD
@@ -79,5 +79,21 @@ class ClientTest < Minitest::Test
 
   def test_checkout_FFFFF
     assert_equal 40, app.checkout("FFFFF")
+  end
+
+  def test_checkout_AHHHAHH
+    assert_equal 145, app.checkout("AHHHAHH")
+  end
+
+  def test_checkout_PPPPP
+    assert_equal 200, app.checkout("PPPPP")
+  end
+
+  def test_checkout_UUUU
+    assert_equal 120, app.checkout("UUUU")
+  end
+
+  def test_checkout_PPPPQRUVPQRUVOQRUVSU
+    assert_equal 740, app.checkout("PPPPQRUVPQRUVPQRUVSU")
   end
 end
